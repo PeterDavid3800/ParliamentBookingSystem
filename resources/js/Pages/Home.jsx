@@ -11,7 +11,7 @@ export default function Home() {
             <section
                 className="relative text-white overflow-hidden"
                 style={{
-                    backgroundImage: `linear-gradient(to bottom right, rgba(139, 26, 30, 0.92), rgba(30, 30, 30, 0.95)), url('https://images.unsplash.com/photo-1590083948734-681d1f59c218?w=1600&q=80')`,
+                    backgroundImage: `linear-gradient(to bottom right, rgba(11, 44, 82, 0.92), rgba(30, 30, 30, 0.95)), url('https://images.unsplash.com/photo-1590083948734-681d1f59c218?w=1600&q=80')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     minHeight: '520px',
@@ -19,12 +19,12 @@ export default function Home() {
             >
                 <div className="max-w-6xl mx-auto px-4 py-20 md:py-28 relative z-10">
                     <div className="max-w-3xl">
-                        <div className="inline-block bg-kenya-gold-500 text-kenya-gold-950 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
+                        <div className="inline-block bg-parliament-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
                             Official Parliament Visits Portal
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
                             Experience the Seat of
-                            <span className="block text-kenya-gold-400">Kenyan Democracy</span>
+                            <span className="block text-parliament-green-300">Kenyan Democracy</span>
                         </h1>
                         <p className="mt-6 text-lg md:text-xl text-parliament-100 leading-relaxed max-w-2xl">
                             Bring your school or institution for an educational tour of the Parliament of Kenya.
@@ -33,7 +33,7 @@ export default function Home() {
                         <div className="mt-10 flex flex-col sm:flex-row gap-4">
                             <Link
                                 href="/book"
-                                className="inline-flex items-center justify-center bg-kenya-gold-500 text-kenya-gold-950 px-8 py-4 rounded-lg font-bold text-lg hover:bg-kenya-gold-400 transition-colors shadow-lg hover:shadow-xl"
+                                className="inline-flex items-center justify-center bg-parliament-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-parliament-green-500 transition-colors shadow-lg hover:shadow-xl"
                             >
                                 Book a Visit Now →
                             </Link>
@@ -231,7 +231,7 @@ export default function Home() {
                     </p>
                     <Link
                         href="/book"
-                        className="inline-flex items-center bg-kenya-gold-500 text-kenya-gold-950 px-10 py-4 rounded-lg font-bold text-lg hover:bg-kenya-gold-400 transition-colors shadow-lg"
+                        className="inline-flex items-center bg-parliament-green-600 text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-parliament-green-500 transition-colors shadow-lg"
                     >
                         Book a Visit Now →
                     </Link>

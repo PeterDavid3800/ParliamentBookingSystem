@@ -20,7 +20,7 @@ export default function PublicLayout({ children }) {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
             {/* Header / Nav */}
-            <header className="bg-parliament-800 text-white shadow-lg sticky top-0 z-50 border-b-2 border-kenya-gold-500">
+            <header className="bg-parliament-800 text-white shadow-lg sticky top-0 z-50 border-b-2 border-parliament-green-600">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="flex items-center justify-between py-3">
                         {/* Logo */}
@@ -47,7 +47,7 @@ export default function PublicLayout({ children }) {
                                     href={link.href}
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                         link.label === 'Book a Visit'
-                                            ? 'bg-kenya-gold-500 text-kenya-gold-950 hover:bg-kenya-gold-400 ml-2'
+                                            ? 'bg-parliament-green-600 text-white hover:bg-parliament-green-500 ml-2'
                                             : isActive(link.href)
                                                 ? 'bg-white/15 text-white'
                                                 : 'text-parliament-100 hover:bg-white/10 hover:text-white'
@@ -84,7 +84,7 @@ export default function PublicLayout({ children }) {
                                     onClick={() => setMenuOpen(false)}
                                     className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                                         link.label === 'Book a Visit'
-                                            ? 'bg-kenya-gold-500 text-kenya-gold-950 hover:bg-kenya-gold-400'
+                                            ? 'bg-parliament-green-600 text-white hover:bg-parliament-green-500'
                                             : isActive(link.href)
                                                 ? 'bg-white/15 text-white'
                                                 : 'text-parliament-100 hover:bg-white/10 hover:text-white'
@@ -111,10 +111,10 @@ export default function PublicLayout({ children }) {
                         <div>
                             <div className="flex items-center gap-2 mb-3">
                                 <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Coat_of_arms_of_Kenya_%28Official%29.svg/120px-Coat_of_arms_of_Kenya_%28Official%29.svg.png"
-                                    alt="Coat of Arms"
-                                    className="h-8 w-auto opacity-80"
-                                />
+                                src="parliament.png"
+                                alt="Parliament of Kenya"
+                                className="h-10 w-auto"
+                            />
                                 <span className="text-white font-bold text-lg">Parliament of Kenya</span>
                             </div>
                             <p className="text-sm leading-relaxed">
@@ -155,8 +155,12 @@ export default function PublicLayout({ children }) {
                         </div>
                     </div>
 
-                    <div className="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+                    <div className="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-center gap-2">
                         <p>© {new Date().getFullYear()} Parliament of Kenya. All rights reserved.</p>
+                        <span className="hidden sm:inline text-gray-700">|</span>
+                        <Link href="/terms" className="hover:text-white transition-colors">
+                            Terms & Conditions
+                        </Link>
                     </div>
                 </div>
             </footer>

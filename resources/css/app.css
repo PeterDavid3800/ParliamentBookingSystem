@@ -8,28 +8,28 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    /* Kenyan Parliament Brand Colors */
-    --color-parliament-50: #fdf2f2;
-    --color-parliament-100: #fde8e8;
-    --color-parliament-200: #fbd0d0;
-    --color-parliament-300: #f5a8a8;
-    --color-parliament-400: #ef7373;
-    --color-parliament-500: #e44444;
-    --color-parliament-600: #ce2a2a;
-    --color-parliament-700: #9b1b20;
-    --color-parliament-800: #8b1a1e;
-    --color-parliament-900: #73181b;
-    --color-parliament-950: #3f080a;
-    /* Kenyan Gold */
-    --color-kenya-gold-50: #fefce8;
-    --color-kenya-gold-100: #fef7c3;
-    --color-kenya-gold-200: #feec8a;
-    --color-kenya-gold-300: #fddd47;
-    --color-kenya-gold-400: #fbc915;
-    --color-kenya-gold-500: #d4a017;
-    --color-kenya-gold-600: #b8860b;
-    --color-kenya-gold-700: #92640a;
-    --color-kenya-gold-800: #795010;
-    --color-kenya-gold-900: #674214;
-    --color-kenya-gold-950: #3b2206;
+    /* Kenyan Parliament Brand — Professional Navy Blue */
+    --color-parliament-50: #e8f0fa;
+    --color-parliament-100: #d1e2f5;
+    --color-parliament-200: #a3c4eb;
+    --color-parliament-300: #75a7e1;
+    --color-parliament-400: #4789d7;
+    --color-parliament-500: #2a6db5;
+    --color-parliament-600: #1d528f;
+    --color-parliament-700: #103c6b;
+    --color-parliament-800: #0b2c52;
+    --color-parliament-900: #071d38;
+    --color-parliament-950: #030e1c;
+    /* Kenyan Parliament — Rich Green Accent */
+    --color-parliament-green-50: #e8f5ed;
+    --color-parliament-green-100: #d1ebd9;
+    --color-parliament-green-200: #a3d7b3;
+    --color-parliament-green-300: #75c38d;
+    --color-parliament-green-400: #47af67;
+    --color-parliament-green-500: #2d8e48;
+    --color-parliament-green-600: #1b6e33;
+    --color-parliament-green-700: #105222;
+    --color-parliament-green-800: #0a3d18;
+    --color-parliament-green-900: #05290f;
+    --color-parliament-green-950: #021407;
 }

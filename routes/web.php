@@ -34,6 +34,10 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
+Route::get('/terms', function () {
+    return Inertia::render('Terms');
+})->name('terms');
+
 Route::get('/api/time-slots', [TimeSlotController::class, 'index'])
     ->name('time-slots.index');
 
