@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.jsx';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Kenyan Parliament Brand Colors */
+    --color-parliament-50: #fdf2f2;
+    --color-parliament-100: #fde8e8;
+    --color-parliament-200: #fbd0d0;
+    --color-parliament-300: #f5a8a8;
+    --color-parliament-400: #ef7373;
+    --color-parliament-500: #e44444;
+    --color-parliament-600: #ce2a2a;
+    --color-parliament-700: #9b1b20;
+    --color-parliament-800: #8b1a1e;
+    --color-parliament-900: #73181b;
+    --color-parliament-950: #3f080a;
+    /* Kenyan Gold */
+    --color-kenya-gold-50: #fefce8;
+    --color-kenya-gold-100: #fef7c3;
+    --color-kenya-gold-200: #feec8a;
+    --color-kenya-gold-300: #fddd47;
+    --color-kenya-gold-400: #fbc915;
+    --color-kenya-gold-500: #d4a017;
+    --color-kenya-gold-600: #b8860b;
+    --color-kenya-gold-700: #92640a;
+    --color-kenya-gold-800: #795010;
+    --color-kenya-gold-900: #674214;
+    --color-kenya-gold-950: #3b2206;
+}
