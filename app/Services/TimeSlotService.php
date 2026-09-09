@@ -9,69 +9,88 @@ use Illuminate\Support\Collection;
 class TimeSlotService
 {
     /**
-     * Define slot rules per day of week.
-     * Returns an array of [start_time, end_time, max_bookings] for each slot on that day.
+     * Visits run Monday-Friday, 9:00 AM-5:00 PM.
+     * Sitting days (Tue-Thu): 20-minute slots.
+     * Non-sitting days (Mon/Fri): 30-minute slots.
      */
     public static function getSlotDefinitions(Carbon $date): array
     {
-        $dayOfWeek = $date->dayOfWeek; // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+        $dayOfWeek = $date->dayOfWeek;
 
-        return match ($dayOfWeek) {
-            // Tuesday — sitting day, morning only
-            2 => [
-                ['start' => '08:00', 'end' => '11:00', 'max' => 4],
-            ],
-            // Wednesday — sitting day, full day
-            3 => [
-                ['start' => '08:00', 'end' => '12:45', 'max' => 4],
-                ['start' => '12:45', 'end' => '17:30', 'max' => 4],
-            ],
-            // Thursday — sitting day, afternoon only
-            4 => [
-                ['start' => '14:30', 'end' => '17:30', 'max' => 4],
-            ],
-            // Monday & Friday — non-sitting, extended full day
-            1, 5 => [
-                ['start' => '08:00', 'end' => '12:45', 'max' => 5],
-                ['start' => '12:45', 'end' => '17:30', 'max' => 5],
-            ],
-            // Saturday & Sunday — closed
-            default => [],
-        };
-    }
-
-    /**
-     * Get existing slots for a date or create them on demand.
-     */
-    public static function getOrCreateSlots(Carbon $date): Collection
-    {
-        $existing = TimeSlot::where('date', $date->toDateString())->get();
-
-        if ($existing->isNotEmpty()) {
-            return $existing;
+        if (! in_array($dayOfWeek, [1, 2, 3, 4, 5], true)) {
+            return [];
         }
 
+        $durationMinutes = in_array($dayOfWeek, [2, 3, 4], true) ? 20 : 30;
+        $cursor = Carbon::createFromFormat('H:i', '09:00');
+        $closing = Carbon::createFromFormat('H:i', '17:00');
+        $definitions = [];
+
+        while ($cursor->lt($closing)) {
+            $end = $cursor->copy()->addMinutes($durationMinutes);
+            if ($end->gt($closing)) {
+                break;
+            }
+
+            $definitions[] = [
+                'start' => $cursor->format('H:i'),
+                'end' => $end->format('H:i'),
+                'max' => 1,
+            ];
+
+            $cursor = $end;
+        }
+
+        return $definitions;
+    }
+
+    public static function getOrCreateSlots(Carbon $date): Collection
+    {
         $definitions = static::getSlotDefinitions($date);
 
         if (empty($definitions)) {
             return collect();
         }
 
-        foreach ($definitions as $def) {
-            TimeSlot::create([
-                'date' => $date->toDateString(),
-                'start_time' => $def['start'],
-                'end_time' => $def['end'],
-                'max_bookings' => $def['max'],
-            ]);
+        $dateString = $date->toDateString();
+        $desiredKeys = collect($definitions)
+            ->map(fn ($def) => $def['start'] . '-' . $def['end'])
+            ->all();
+
+        $existing = TimeSlot::where('date', $dateString)->get();
+
+        foreach ($existing as $slot) {
+            $key = substr($slot->start_time, 0, 5) . '-' . substr($slot->end_time, 0, 5);
+            if (! in_array($key, $desiredKeys, true) && $slot->bookings()->count() === 0) {
+                $slot->delete();
+            }
         }
 
-        return TimeSlot::where('date', $date->toDateString())->get();
+        foreach ($definitions as $def) {
+            TimeSlot::firstOrCreate(
+                [
+                    'date' => $dateString,
+                    'start_time' => $def['start'],
+                    'end_time' => $def['end'],
+                ],
+                ['max_bookings' => $def['max']]
+            );
+        }
+
+        return TimeSlot::where('date', $dateString)
+            ->where(function ($query) use ($definitions) {
+                foreach ($definitions as $index => $def) {
+                    $method = $index === 0 ? 'where' : 'orWhere';
+                    $query->{$method}(function ($q) use ($def) {
+                        $q->where('start_time', $def['start'])
+                          ->where('end_time', $def['end']);
+                    });
+                }
+            })
+            ->orderBy('start_time')
+            ->get();
     }
 
-    /**
-     * Get available slots (with capacity remaining) for a date.
-     */
     public static function getAvailableSlots(Carbon $date): Collection
     {
         return static::getOrCreateSlots($date)
@@ -79,13 +98,8 @@ class TimeSlotService
             ->values();
     }
 
-    /**
-     * Check if a date is available for booking (not closed, not in the past).
-     */
     public static function isDateAvailable(Carbon $date): bool
     {
-        $definitions = static::getSlotDefinitions($date);
-
-        return ! empty($definitions);
+        return ! empty(static::getSlotDefinitions($date));
     }
 }

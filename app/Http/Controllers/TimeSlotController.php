@@ -12,7 +12,7 @@ class TimeSlotController extends Controller
     public function index(Request $request): JsonResponse
     {
         $request->validate([
-            'date' => ['required', 'date', 'after_or_equal:today'],
+            'date' => ['required', 'date', 'after_or_equal:' . now()->addDays(7)->toDateString()],
         ]);
 
         $date = Carbon::parse($request->input('date'));

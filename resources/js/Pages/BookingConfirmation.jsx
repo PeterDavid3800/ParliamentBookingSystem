@@ -66,10 +66,24 @@ export default function BookingConfirmation({ booking }) {
                                     </span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-gray-500">Visitors</span>
-                                    <span className="font-medium text-gray-800">
-                                        {booking.visitor_count}
-                                    </span>
+                                    <span className="text-gray-500">Category</span>
+                                    <span className="font-medium text-gray-800">{booking.institution_category || '—'}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-gray-500">County / Constituency</span>
+                                    <span className="font-medium text-gray-800 text-right">{booking.county || '—'}{booking.constituency ? ` / ${booking.constituency}` : ''}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-gray-500">Learners</span>
+                                    <span className="font-medium text-gray-800">{booking.learner_count ?? booking.visitor_count}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-gray-500">Accompanying Persons</span>
+                                    <span className="font-medium text-gray-800">{booking.accompanying_persons ?? 0}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className="text-gray-500">Total Visitors</span>
+                                    <span className="font-medium text-gray-800">{booking.visitor_count}</span>
                                 </div>
                                 {booking.documents?.length > 0 && (
                                     <div className="flex justify-between text-sm">
@@ -84,8 +98,8 @@ export default function BookingConfirmation({ booking }) {
                     </div>
 
                     {/* Email Notice */}
-                    <div className="bg-blue-50 border-t border-blue-100 px-8 py-4">
-                        <p className="text-blue-800 text-sm flex items-center gap-2">
+                    <div className="bg-green-50 border-t border-green-100 px-8 py-4">
+                        <p className="text-green-800 text-sm flex items-center gap-2">
                             <Mail className="w-4 h-4" /> A confirmation email has been sent to{' '}
                             <strong>{booking.contact_email}</strong>
                         </p>
@@ -107,7 +121,7 @@ export default function BookingConfirmation({ booking }) {
                 {/* Important Notes */}
                 <div className="mt-6 bg-white rounded-xl shadow-md p-6">
                     <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                        <Info className="w-5 h-5 text-blue-600" /> Important Reminders
+                        <Info className="w-5 h-5 text-parliament-600" /> Important Reminders
                     </h3>
                     <ul className="space-y-2 text-sm text-gray-600">
                         <li>• Arrive 15 minutes before your scheduled time.</li>

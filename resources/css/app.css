@@ -6,30 +6,34 @@
 @source '../**/*.jsx';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-    /* Kenyan Parliament Brand — Professional Navy Blue */
-    --color-parliament-50: #e8f0fa;
-    --color-parliament-100: #d1e2f5;
-    --color-parliament-200: #a3c4eb;
-    --color-parliament-300: #75a7e1;
-    --color-parliament-400: #4789d7;
-    --color-parliament-500: #2a6db5;
-    --color-parliament-600: #1d528f;
-    --color-parliament-700: #103c6b;
-    --color-parliament-800: #0b2c52;
-    --color-parliament-900: #071d38;
-    --color-parliament-950: #030e1c;
-    /* Kenyan Parliament — Rich Green Accent */
-    --color-parliament-green-50: #e8f5ed;
-    --color-parliament-green-100: #d1ebd9;
-    --color-parliament-green-200: #a3d7b3;
-    --color-parliament-green-300: #75c38d;
-    --color-parliament-green-400: #47af67;
-    --color-parliament-green-500: #2d8e48;
-    --color-parliament-green-600: #1b6e33;
-    --color-parliament-green-700: #105222;
-    --color-parliament-green-800: #0a3d18;
-    --color-parliament-green-900: #05290f;
-    --color-parliament-green-950: #021407;
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* National Assembly-inspired green palette */
+    --color-parliament-50: #eef8f1;
+    --color-parliament-100: #d7efdf;
+    --color-parliament-200: #b1dfc0;
+    --color-parliament-300: #7dc99a;
+    --color-parliament-400: #47ad70;
+    --color-parliament-500: #218c54;
+    --color-parliament-600: #176f42;
+    --color-parliament-700: #125936;
+    --color-parliament-800: #0d472c;
+    --color-parliament-900: #073a24;
+    --color-parliament-950: #032417;
+    --color-parliament-green-50: #eef8f1;
+    --color-parliament-green-100: #d7efdf;
+    --color-parliament-green-200: #b1dfc0;
+    --color-parliament-green-300: #7dc99a;
+    --color-parliament-green-400: #47ad70;
+    --color-parliament-green-500: #218c54;
+    --color-parliament-green-600: #176f42;
+    --color-parliament-green-700: #125936;
+    --color-parliament-green-800: #0d472c;
+    --color-parliament-green-900: #073a24;
+    --color-parliament-green-950: #032417;
+}
+
+@layer components {
+    .input {
+        @apply w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-parliament-500 focus:border-parliament-500 outline-none;
+    }
 }

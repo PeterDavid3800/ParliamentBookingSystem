@@ -11,11 +11,20 @@ class Booking extends Model
     protected $fillable = [
         'time_slot_id',
         'institution_name',
+        'institution_category',
         'contact_person',
         'contact_email',
         'contact_phone',
         'reason_for_visit',
         'visitor_count',
+        'learner_count',
+        'accompanying_persons',
+        'has_disability',
+        'disability_nature',
+        'county',
+        'constituency',
+        'consent_accepted',
+        'consent_accepted_at',
         'status',
         'confirmation_code',
     ];
@@ -24,6 +33,11 @@ class Booking extends Model
     {
         return [
             'visitor_count' => 'integer',
+            'learner_count' => 'integer',
+            'accompanying_persons' => 'integer',
+            'has_disability' => 'boolean',
+            'consent_accepted' => 'boolean',
+            'consent_accepted_at' => 'datetime',
         ];
     }
 
@@ -60,7 +74,9 @@ class Booking extends Model
         return $query->where(function ($q) use ($term) {
             $q->where('institution_name', 'like', "%{$term}%")
               ->orWhere('contact_person', 'like', "%{$term}%")
-              ->orWhere('confirmation_code', 'like', "%{$term}%");
+              ->orWhere('confirmation_code', 'like', "%{$term}%")
+              ->orWhere('county', 'like', "%{$term}%")
+              ->orWhere('constituency', 'like', "%{$term}%");
         });
     }
 }

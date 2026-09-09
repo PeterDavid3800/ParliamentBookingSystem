@@ -101,8 +101,29 @@ export default function BookingsShow({ booking }) {
                             <div className="flex items-start gap-3">
                                 <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                                 <div>
+                                    <p className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Registration Category</p>
+                                    <p className="text-sm font-medium text-gray-900">{booking.institution_category || '—'}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                                <div>
                                     <p className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Group Size</p>
-                                    <p className="text-sm font-medium text-gray-900">{booking.visitor_count} visitors</p>
+                                    <p className="text-sm font-medium text-gray-900">{booking.learner_count ?? booking.visitor_count} learners + {booking.accompanying_persons ?? 0} accompanying ({booking.visitor_count} total)</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <p className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">County / Constituency</p>
+                                    <p className="text-sm font-medium text-gray-900">{booking.county || '—'}{booking.constituency ? ` / ${booking.constituency}` : ''}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Users className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <p className="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Disability / Accessibility</p>
+                                    <p className="text-sm font-medium text-gray-900">{booking.has_disability ? (booking.disability_nature || 'Yes') : 'No'}</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-3">
